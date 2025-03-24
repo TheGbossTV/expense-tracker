@@ -2,6 +2,8 @@ import React from "react";
 
 import { addExpense } from "@/actions/actions";
 
+// NOTE: We use server actions on this form, it's a way to keept it a server component but still be able to call an API
+
 const ExpensesForm = () => {
   return (
     <form className="w-full mt-8 rounded overflow-hidden" action={addExpense}>
