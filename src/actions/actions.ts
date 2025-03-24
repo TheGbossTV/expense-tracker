@@ -6,7 +6,7 @@ export async function addExpense(formData: FormData) {
     await prisma.expense.create({
         data: {
             description: formData.get("expense") as string,
-            amount: Number(formData.get("amount"))
+            amount: Number(formData.get("cost"))
         },
     })
 }
