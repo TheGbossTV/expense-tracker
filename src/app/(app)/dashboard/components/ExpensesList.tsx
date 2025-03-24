@@ -1,13 +1,13 @@
 import React from "react";
 
-const ExpensesList = () => {
-  const expenses = [
-    { id: "e1", description: "A pair of shoes", amount: 59.99 },
-  ];
+interface ExpensesListProps {
+  data: { id: number; description: string; amount: number; createdAt: Date }[];
+}
 
+const ExpensesList = async ({ data }: ExpensesListProps) => {
   return (
     <ul className="h-[300px] bg-white rounded mt-4 shadow-md">
-      {expenses.map((expense) => (
+      {data.map((expense) => (
         <li
           key={expense.id}
           className="flex items-center px-4 py-2 border-b border-gray-200"

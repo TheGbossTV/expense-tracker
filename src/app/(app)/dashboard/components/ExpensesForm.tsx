@@ -1,8 +1,10 @@
 import React from "react";
 
+import { addExpense } from "@/actions/actions";
+
 const ExpensesForm = () => {
   return (
-    <form className="w-full mt-8 rounded overflow-hidden">
+    <form className="w-full mt-8 rounded overflow-hidden" action={addExpense}>
       <input
         type="text"
         name="expense"
