@@ -36,7 +36,7 @@ const ExpensesList = ({ data }: ExpensesListProps) => {
   };
 
   return (
-    <ul className="h-[300px] bg-white rounded mt-4 shadow-md">
+    <ul className="h-[300px] bg-white rounded mt-4 shadow-md overflow-y-auto">
       {data.map((expense) => (
         <li
           key={expense.id}
