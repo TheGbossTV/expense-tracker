@@ -3,8 +3,17 @@ import { prisma } from "@/lib/db";
 
 import ExpensesForm from "./components/ExpensesForm";
 import ExpenseList from "./components/ExpensesList";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
+  // authentication check
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
   const expenses = await prisma.expense.findMany();
 
   return (

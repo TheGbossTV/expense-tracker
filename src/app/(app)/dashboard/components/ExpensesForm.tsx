@@ -2,7 +2,7 @@ import React from "react";
 
 import { addExpense } from "@/actions/actions";
 
-// NOTE: We use server actions on this form, it's a way to keept it a server component but still be able to call an API
+// NOTE: We use server actions on this form, it's a way to keep it a server component but still be able to call an API
 
 const ExpensesForm = () => {
   return (
