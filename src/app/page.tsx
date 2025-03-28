@@ -1,8 +1,17 @@
 import Image from "next/image";
 import HomeImage from "../../assets/HomeImage.png";
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import {
+  getKindeServerSession,
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/server";
+import PaymentButton from "@/components/PaymentButton";
 
-export default function Home() {
+export default async function Home() {
+  const { isAuthenticated } = getKindeServerSession();
+
+  const isLoggedIn = await isAuthenticated();
+
   return (
     <div className="bg-[#5DC9A8] min-h-screen flex flex-col xl:flex-row items-center justify-center gap-12">
       <Image
@@ -23,13 +32,19 @@ export default function Home() {
           lifetime access for 99€.
         </p>
 
-        <div className="mt-10 space-x-3 flex justify-center pr-34">
-          <LoginLink className="bg-black text-white py-2 px-4 rounded-lg font-medium">
-            Login
-          </LoginLink>
-          <RegisterLink className="bg-black/50 text-white py-2 px-4 rounded-lg font-medium">
-            Register
-          </RegisterLink>
+        <div className="mt-10 space-x-3 flex justify-center pr-30">
+          {!isLoggedIn ? (
+            <>
+              <LoginLink className="bg-black text-white py-2 px-4 rounded-lg font-medium">
+                Login
+              </LoginLink>
+              <RegisterLink className="bg-black/50 text-white py-2 px-4 rounded-lg font-medium">
+                Register
+              </RegisterLink>
+            </>
+          ) : (
+            <PaymentButton />
+          )}
         </div>
       </div>
     </div>
